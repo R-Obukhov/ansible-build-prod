@@ -29,11 +29,7 @@
         name: default-jdk
         state: present 
 
-    - name: start service tomcat 
-      service:
-        name: tomcat
-        state: started
-        enabled: true
-        
+
+
 
        
