@@ -1,0 +1,15 @@
+---
+- name: install java and maven
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: install maven
+      apt: maven
+      state: present 
+
+    - name: install java
+      apt: openjdk
+      state: present 
+      
+       
