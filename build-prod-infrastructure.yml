@@ -5,11 +5,13 @@
 
   tasks:
     - name: install maven
-      apt: maven
-      state: present 
+      apt: 
+        name: maven
+        state: present 
 
     - name: install java
-      apt: openjdk
-      state: present 
-      
+      apt: 
+        name: openjdk
+        state: present 
+
        
