@@ -30,10 +30,10 @@
         state: present 
 
     - name: start service tomcat 
-      systemd:
+      service:
         name: tomcat
         state: started
         enabled: true
-        daemon_reload: true
+        
 
        
