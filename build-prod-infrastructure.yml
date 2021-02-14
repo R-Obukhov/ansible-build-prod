@@ -27,7 +27,13 @@
     - name: install java
       apt:
         name: default-jdk
-        state: present 
+        state: present
+
+    - name: check apache started
+      service:
+        name: httpd
+        state: started
+         
 
 
 
