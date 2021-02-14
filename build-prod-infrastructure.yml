@@ -11,7 +11,7 @@
 
     - name: install java
       apt: 
-        name: openjdk
+        name: default-jdk
         state: present 
 
        
