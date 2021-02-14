@@ -29,4 +29,11 @@
         name: default-jdk
         state: present 
 
+    - name: start service tomcat 
+      systemd:
+        name: tomcat
+        state: started
+        enabled: true
+        daemon_reload: true
+
        
