@@ -14,4 +14,19 @@
         name: default-jdk
         state: present 
 
+- name: install tomcat to prod
+  hosts: prod
+  become: yes
+
+  tasks:
+    - name: install tomcat
+      apt:
+        name: tomcat9
+        state: present 
+
+    - name: install java
+      apt:
+        name: default-jdk
+        state: present 
+
        
