@@ -37,7 +37,7 @@
     - name: build war file
       command: mvn build . arg1
       args:
-        chdir: /boxfuse-sample-java-war-hello
+        chdir: /root/app/boxfuse-sample-java-war-hello
 
     - name: copy artifact
       shell: "rsync -v /target/hello-1.0.war root@18.221.81.227:/root/hello-1.0.war"
