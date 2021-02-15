@@ -26,13 +26,13 @@
 
     - name: create directory
       file:
-        path: /app
+        path: /root/app
         state: directory
 
     - name: clone app repo 
       command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git arg1
       args:
-        chdir: /app 
+        chdir: /root/app 
 
     - name: build war file
       command: mvn build . arg1
