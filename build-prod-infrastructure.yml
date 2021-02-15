@@ -29,17 +29,15 @@
         path: /app
         state: directory
 
-    - name: change dir 
-      command: chdir=/app
-      
-    - name: git clone
-      shell: "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git"
+    - name: clone app repo 
+      command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git arg1
+      args:
+        chdir: /app 
 
-    - name: cd app dir 
-      command: chdir=/boxfuse-sample-java-war-hello
-
-    - name: build war
-      shell: "mvn build ."
+    - name: build war file
+      command: mvn build . arg1
+      args:
+        chdir: /boxfuse-sample-java-war-hello
 
     - name: copy artifact
       shell: "rsync -v /target/hello-1.0.war root@18.221.81.227:/root/hello-1.0.war"
