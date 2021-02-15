@@ -24,8 +24,13 @@
         name: rsync
         state: present 
 
-    - name: copy sourse for build
-      shell: "mkdir /app && cd app"
+    - name: create directory
+      file:
+        path: /app
+        state: directory
+
+    - name: change dir 
+      command: chdir=/app
       
     - name: git clone
       shell: "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git && cd boxfuse-sample-java-war-hello"  
