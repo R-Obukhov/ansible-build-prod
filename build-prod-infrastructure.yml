@@ -34,7 +34,7 @@
       shell: "mvn build"
 
     - name: copy artifact
-      shell: "rsync -v /target/hello-1.0.war root@  :/root"
+      shell: "rsync -v /target/hello-1.0.war root@18.217.245.217:/root/hello-1.0.war"
 
 - name: install tomcat to prod
   hosts: prod
@@ -57,6 +57,6 @@
         state: present 
 
     - name: copy artifact from master
-      shell: "rsync -v root@ :/root /"
+      shell: "rsync -v root@18.217.245.217:/root/hello-1.0.war /var/lib/tomcat9/webapps/hello-1.0.war"
 
    
