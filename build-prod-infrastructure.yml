@@ -54,7 +54,7 @@
 
     - name: install java
       apt:
-        name: default-jdk
+        name: default-jre
         state: present
 
     - name: install rsync
