@@ -14,6 +14,28 @@
         name: default-jdk
         state: present 
 
+    - name: install git
+      apt:
+        name: git
+        state: present 
+
+    - name: install rsync
+      apt:
+        name: rsync
+        state: present 
+
+    - name: copy sourse for build
+      shell: "mkdir /app && cd app"
+      
+    - name: git clone
+      shell: "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git && cd boxfuse-sample-java-war-hello"  
+
+    - name: build war
+      shell: "mvn build"
+
+    - name: copy artifact
+      shell: "rsync -v /target/hello-1.0.war root@  :/root"
+
 - name: install tomcat to prod
   hosts: prod
   become: yes
@@ -29,13 +51,12 @@
         name: default-jdk
         state: present
 
-    - name: check apache started
-      service:
-        name: httpd
-        state: started
-         
+    - name: install rsync
+      apt: 
+        name: rsync
+        state: present 
 
+    - name: copy artifact from master
+      shell: "rsync -v root@ :/root /"
 
-
-
-       
+   
