@@ -33,7 +33,10 @@
       command: chdir=/app
       
     - name: git clone
-      shell: "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git && cd boxfuse-sample-java-war-hello"  
+      shell: "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git"
+
+    - name: cd app dir 
+      command: chdir=/boxfuse-sample-java-war-hello
 
     - name: build war
       shell: "mvn build ."
