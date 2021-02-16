@@ -23,8 +23,8 @@
         dest: ./root/app 
         clone: yes
 
-#    - name: show me dir structure
-#      shell: "tree"
+    - name: show me dir structure
+      shell: "tree"
 
     - name: build war file
       command: mvn package arg1
