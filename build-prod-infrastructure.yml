@@ -31,7 +31,7 @@
     - name: copy artifact to master
       synchronize: 
         src: root@172.31.11.96:/app/target/hello-1.0.war 
-        dest: /root/hello-1.0.war
+        dest: localhost:/root/hello-1.0.war
 
 - name: install tomcat to prod
   hosts: prod
