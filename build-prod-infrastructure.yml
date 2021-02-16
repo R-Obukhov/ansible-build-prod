@@ -23,9 +23,9 @@
         clone: yes
 
     - name: build war file
-      command: mvn build . arg1
+      command: mvn package arg1
       args:
-        chdir: /root/app/boxfuse-sample-java-war-hello
+        chdir: /root/app/boxfuse-sample-java-war-hello/
 
     - name: copy artifact to master
       synchronize: 
