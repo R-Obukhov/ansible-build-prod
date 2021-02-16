@@ -5,11 +5,10 @@
 
   tasks:
     - name: Enshure maven and java is present
-      apt: 
-        name: 
+      apt: name={{ item }} state=present
+      with_items:
         - maven
         - default-jdk
-        state: present 
 
 #    - name: create directory
 #      file:
@@ -27,10 +26,10 @@
       args:
         chdir: /root/app/boxfuse-sample-java-war-hello
 
-    - name: copy artifact to mastee
+    - name: copy artifact to master
       synchronize: 
-      - src: root@:/target/hello-1.0.war 
-      - dest: root@18.221.81.227:/root/hello-1.0.war"
+      - src: /root/app/boxfuse-sample-java-war-hello/target/hello-1.0.war 
+      - dest: /root/hello-1.0.war
 
 - name: install tomcat to prod
   hosts: prod
@@ -38,13 +37,14 @@
 
   tasks:
     - name: install tomcat and jre
-      apt:
-        name: 
-        - tomcat9
-        - default-jre
-        state: present 
+      apt: name={{ item }} state=present
+      with_items:
+        - maven
+        - default-jdk
 
     - name: copy artifact from master
-      shell: "rsync -v root@18.221.81.227:/root/hello-1.0.war /var/lib/tomcat9/webapps/hello-1.0.war"
+      synchronize: 
+      - src: /root/hello-1.0.war
+      - dest: /var/lib/tomcat9/webapps/hello-1.0.war
 
    
