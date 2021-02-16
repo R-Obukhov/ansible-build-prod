@@ -13,27 +13,27 @@
 
     - name: enshure empty directory for git clone
       file:
-        path: /root/app
+        path: ./root/app
         state: absent
 
 
     - name: clone app repo 
       git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-        dest: /root/app 
+        dest: ./root/app 
         clone: yes
 
-    - name: show me dir structure
-      shell: "tree"
+#    - name: show me dir structure
+#      shell: "tree"
 
     - name: build war file
       command: mvn package arg1
       args:
-        chdir: /root/app/boxfuse-sample-java-war-hello/
+        chdir: ./root/app/boxfuse-sample-java-war-hello/
 
     - name: copy artifact to master
       synchronize: 
-        src: /root/app/boxfuse-sample-java-war-hello/target/hello-1.0.war 
+        src: ./root/app/boxfuse-sample-java-war-hello/target/hello-1.0.war 
         dest: /root/hello-1.0.war
 
 - name: install tomcat to prod
