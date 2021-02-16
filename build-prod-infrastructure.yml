@@ -15,11 +15,12 @@
 #        path: /root/app
 #        state: directory
 
+
     - name: clone app repo 
       ansible.builtin.git:
-      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-      dest: /root/app 
-      clone: yes
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        dest: /root/app 
+        clone: yes
 
     - name: build war file
       command: mvn build . arg1
@@ -36,7 +37,7 @@
   become: yes
 
   tasks:
-    - name: install tomcat and jre
+    - name: install tomcat and jre to prod
       apt: name={{ item }} state=present
       with_items:
         - maven
