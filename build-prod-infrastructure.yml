@@ -30,8 +30,10 @@
 
     - name: copy artifact to master
       synchronize: 
-        src: /app/target/hello-1.0.war 
+        src: target/hello-1.0.war 
         dest: /root/hello-1.0.war
+        args:
+          chdir: /app
 
 - name: install tomcat to prod
   hosts: prod
