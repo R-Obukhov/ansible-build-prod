@@ -27,9 +27,9 @@
 #      shell: "tree"
 
     - name: build war file
-      command: mvn package arg1
+      command: mvn package 
       args:
-        chdir: /boxfuse-sample-java-war-hello
+        chdir: /app
 
     - name: copy artifact to master
       synchronize: 
