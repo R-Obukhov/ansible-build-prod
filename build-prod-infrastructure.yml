@@ -23,13 +23,13 @@
         dest: ./root/app 
         clone: yes
 
-    - name: show me dir structure
-      shell: "tree"
+#    - name: show me dir structure
+#      shell: "tree"
 
     - name: build war file
       command: mvn package arg1
       args:
-        chdir: ./root/app/boxfuse-sample-java-war-hello/
+        chdir: /boxfuse-sample-java-war-hello
 
     - name: copy artifact to master
       synchronize: 
