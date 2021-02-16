@@ -9,6 +9,7 @@
       with_items:
         - maven
         - default-jdk
+        - tree
 
     - name: enshure empty directory for git clone
       file:
@@ -21,6 +22,9 @@
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
         dest: /root/app 
         clone: yes
+
+    - name: show me dir structure
+      shell: "tree"
 
     - name: build war file
       command: mvn package arg1
