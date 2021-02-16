@@ -5,11 +5,9 @@
 
   tasks:
     - name: Enshure maven and java is present
-      apt: name={{ item }} state=present
-      with_items:
-        - maven
-        - default-jdk
-        - tree
+      apt: 
+        name: ['maven', 'default-jdk', 'tree'] 
+        state: present
 
     - name: enshure empty directory for git clone
       file:
@@ -40,10 +38,9 @@
 
   tasks:
     - name: install tomcat and jre to prod
-      apt: name={{ item }} state=present
-      with_items:
-        - maven
-        - default-jre
+      apt: 
+        name: ['maven', 'default-jre']
+        state: present
 
     - name: copy artifact from master
       synchronize: 
