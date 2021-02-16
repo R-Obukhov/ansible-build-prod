@@ -29,8 +29,8 @@
 
     - name: copy artifact to master
       synchronize: 
-      - src: /root/app/boxfuse-sample-java-war-hello/target/hello-1.0.war 
-      - dest: /root/hello-1.0.war
+        src: /root/app/boxfuse-sample-java-war-hello/target/hello-1.0.war 
+        dest: /root/hello-1.0.war
 
 - name: install tomcat to prod
   hosts: prod
