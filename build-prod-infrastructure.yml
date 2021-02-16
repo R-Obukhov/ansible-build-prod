@@ -10,10 +10,10 @@
         - maven
         - default-jdk
 
-#    - name: create directory
-#      file:
-#        path: /root/app
-#        state: directory
+    - name: enshure empty directory for git clone
+      file:
+        path: /root/app
+        state: absent
 
 
     - name: clone app repo 
