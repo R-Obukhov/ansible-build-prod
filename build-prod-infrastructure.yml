@@ -1,65 +1,47 @@
 ---
-- name: install java and maven
+- name: install jdk maven and build app 
   hosts: build
   become: yes
 
   tasks:
-    - name: install maven
+    - name: Enshure maven and java is present
       apt: 
-        name: maven
+        name: 
+        - maven
+        - default-jdk
         state: present 
 
-    - name: install java
-      apt: 
-        name: default-jdk
-        state: present 
-
-    - name: install git
-      apt:
-        name: git
-        state: present 
-
-    - name: install rsync
-      apt:
-        name: rsync
-        state: present 
-
-    - name: create directory
-      file:
-        path: /root/app
-        state: directory
+#    - name: create directory
+#      file:
+#        path: /root/app
+#        state: directory
 
     - name: clone app repo 
-      command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git arg1
-      args:
-        chdir: /root/app 
+      ansible.builtin.git:
+      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      dest: /root/app 
+      clone: yes
 
     - name: build war file
       command: mvn build . arg1
       args:
         chdir: /root/app/boxfuse-sample-java-war-hello
 
-    - name: copy artifact
-      shell: "rsync -v /target/hello-1.0.war root@18.221.81.227:/root/hello-1.0.war"
+    - name: copy artifact to mastee
+      synchronize: 
+      - src: root@:/target/hello-1.0.war 
+      - dest: root@18.221.81.227:/root/hello-1.0.war"
 
 - name: install tomcat to prod
   hosts: prod
   become: yes
 
   tasks:
-    - name: install tomcat
+    - name: install tomcat and jre
       apt:
-        name: tomcat9
-        state: present 
-
-    - name: install java
-      apt:
-        name: default-jre
-        state: present
-
-    - name: install rsync
-      apt: 
-        name: rsync
+        name: 
+        - tomcat9
+        - default-jre
         state: present 
 
     - name: copy artifact from master
