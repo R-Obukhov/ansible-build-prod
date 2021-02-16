@@ -45,7 +45,7 @@
 
     - name: copy artifact from master
       synchronize: 
-      - src: /root/hello-1.0.war
-      - dest: /var/lib/tomcat9/webapps/hello-1.0.war
+        src: /root/hello-1.0.war
+        dest: /var/lib/tomcat9/webapps/hello-1.0.war
 
    
